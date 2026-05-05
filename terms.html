@@ -19,27 +19,43 @@
   <!-- Header -->
   <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-gray-100">
     <nav class="max-w-7xl mx-auto px-8 md:px-16 py-4 flex items-center justify-between">
-      <div class="flex items-center justify-between w-full">
-        <!-- Logo -->
-        <a href="https://jb3147.github.io/richardson-emergency-plumber-2026-05-05-yius5" class="flex items-center gap-2 group">
-          <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#FF5A5F] via-[#FF7A7F] to-[#FFD166] flex items-center justify-center shadow-[0_10px_40px_rgba(0,0,0,0.1)] group-hover:scale-105 group-hover:shadow-xl transition-all duration-300 ease-out">
-            <!-- Heroicon: Wrench -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M21 21L16.65 16.65M9.75 3.75a4.5 4.5 0 013.897 6.82l-6.827 6.827a2.121 2.121 0 01-3-3l6.827-6.827A4.48 4.48 0 019.75 3.75z"/>
-            </svg>
-          </div>
-          <div>
-            <p class="text-sm font-semibold tracking-tight text-[#1A1A1A]">Richardson Plumber</p>
-            <p class="text-xs font-medium text-gray-500">Emergency Plumbing Specialists</p>
-          </div>
-        </a>
+      <!-- Logo -->
+      <a href="index.html#top" class="flex items-center gap-2 group">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#FF5A5F] via-[#FF7A7F] to-[#FFD166] flex items-center justify-center shadow-[0_10px_40px_rgba(0,0,0,0.1)] group-hover:scale-105 group-hover:shadow-xl transition-all duration-300 ease-out">
+          <!-- Heroicon: Wrench -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 21L16.65 16.65M9.75 3.75a4.5 4.5 0 013.897 6.82l-6.827 6.827a2.121 2.121 0 01-3-3l6.827-6.827A4.48 4.48 0 019.75 3.75z"/>
+          </svg>
+        </div>
+        <div>
+          <p class="text-sm font-semibold tracking-tight text-[#1A1A1A]">Richardson Plumber</p>
+          <p class="text-xs font-medium text-gray-500">Emergency Plumbing Specialists</p>
+        </div>
+      </a>
 
-        <!-- Back Link -->
-        <a href="https://jb3147.github.io/richardson-emergency-plumber-2026-05-05-yius5" class="text-gray-700 hover:text-[#FF5A5F] transition-colors duration-300 text-sm font-medium">
-          ← Back
-        </a>
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a href="index.html#features" class="text-gray-700 hover:text-[#FF5A5F] transition-colors duration-300">Services</a>
+        <a href="index.html#benefits" class="text-gray-700 hover:text-[#FF5A5F] transition-colors duration-300">Why Choose Us</a>
+        <a href="index.html#testimonials" class="text-gray-700 hover:text-[#FF5A5F] transition-colors duration-300">Testimonials</a>
+        <a href="index.html#faq" class="text-gray-700 hover:text-[#FF5A5F] transition-colors duration-300">FAQ</a>
       </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-button md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 text-gray-700 hover:text-[#FF5A5F] hover:border-[#FF5A5F] transition-all duration-300 ease-out" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars text-lg"></i>
+      </button>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden md:hidden border-t border-gray-100 bg-white transition-all duration-300 ease-out">
+      <div class="max-w-7xl mx-auto px-8 md:px-16 py-4 flex flex-col gap-3 text-sm font-medium">
+        <a href="index.html#features" class="py-1 text-gray-700 hover:text-[#FF5A5F] transition-colors duration-300">Services</a>
+        <a href="index.html#benefits" class="py-1 text-gray-700 hover:text-[#FF5A5F] transition-colors duration-300">Why Choose Us</a>
+        <a href="index.html#testimonials" class="py-1 text-gray-700 hover:text-[#FF5A5F] transition-colors duration-300">Testimonials</a>
+        <a href="index.html#faq" class="py-1 text-gray-700 hover:text-[#FF5A5F] transition-colors duration-300">FAQ</a>
+      </div>
+    </div>
   </header>
 
   <main id="top">
@@ -316,14 +332,41 @@
   <!-- Required JavaScript -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Mobile Menu Toggle
+      const mobileMenuButton = document.querySelector('.mobile-menu-button');
+      const mobileMenu = document.querySelector('.mobile-menu');
+      
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+          const icon = mobileMenuButton.querySelector('i');
+          if (icon) {
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+          }
+        });
+
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            const icon = mobileMenuButton.querySelector('i');
+            if (icon) {
+              icon.classList.remove('fa-times');
+              icon.classList.add('fa-bars');
+            }
+          });
+        });
+      }
+
       // Smooth Scroll for Anchor Links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           const href = this.getAttribute('href');
           if (href !== '#' && href.length > 1) {
+            e.preventDefault();
             const target = document.querySelector(href);
             if (target) {
-              e.preventDefault();
               target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
           }
